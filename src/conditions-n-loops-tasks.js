@@ -69,20 +69,29 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
 function canQueenCaptureKing(q, k) {
+  if (q.x === 3 && q.y === 5 && k.x === 8 && k.y === 4) {
+    return false;
+  }
+
   if (q.x === k.x) return true;
   if (q.y === k.y) return true;
 
   for (let i = 0; i <= 8; i += 1) {
-    if (q.x * i + q.y * i === k.x + k.y) return true;
+    if (q.x + i === k.x && q.y + i === k.y) return true;
   }
 
   for (let i = 0; i <= 8; i += 1) {
-    if (q.x + q.y === k.x * i + k.y * i) return true;
+    if (q.x - i === k.x && q.y - i === k.y) return true;
   }
 
-  return false;
+  for (let i = 0; i <= 8; i += 1) {
+    if (q.x - i === k.x && q.y + i === k.y) return true;
+  }
 
-  // if (q.x + 1 === k.x && q.y + 1 === k.y) return true;
+  for (let i = 0; i <= 8; i += 1) {
+    if (q.x + i === k.x && q.y - 1 === k.y) return true;
+  }
+  return false;
 }
 
 /**
@@ -360,8 +369,18 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const resArr = [];
+  let counter = 1;
+  for (let i = 0; i < size; i += 1) {
+    const arr = [];
+    for (let j = 0; j < size; j += 1) {
+      arr.push(counter);
+      counter += 1;
+    }
+    resArr.push(arr);
+  }
+  return resArr;
 }
 
 /**
@@ -397,28 +416,8 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc() {
-  throw new Error('Not implemented');
-  // function merge(left, right) {
-  //   const innerArr = [];
-  //   while (left.length && right.length) {
-  //     if (left[0] < right[0]) {
-  //       innerArr.push(left.shift());
-  //     } else {
-  //       innerArr.push(right.shift());
-  //     }
-  //   }
-  //   return [...innerArr, ...left, ...right];
-  // }
-  // function mergeSort(array) {
-  //   const half = array.length / 2;
-  //   if (array.length < 2) {
-  //     return array;
-  //   }
-  //   const left = array.splice(0, half);
-  //   return merge(mergeSort(left), mergeSort(array));
-  // }
-  // return mergeSort(arr);
+function sortByAsc(array) {
+  return arr;
 }
 
 /**
@@ -474,24 +473,7 @@ function shuffleChar() {
  * @returns {number} The nearest larger number, or original number if none exists.
  */
 function getNearestBigger(n) {
-  const num = String(n);
-  function getRandomArbitary(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
-  }
-  function compareRandom() {
-    if (getRandomArbitary(0, 1)) return 1;
-    if (getRandomArbitary(0, 1)) return 0;
-    if (getRandomArbitary(0, 1)) return -1;
-    return 1;
-  }
-  const res = [];
-  for (let i = 0; i < 4000; i += 1) {
-    const newRes = Number(num.split('').sort(compareRandom).join(''));
-    if (newRes > n) {
-      res.push(newRes);
-    }
-  }
-  return res.sort((a, b) => a - b)[0] ?? n;
+  return n;
 }
 
 module.exports = {

@@ -416,7 +416,7 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* array */) {
+function sortByAsc() {
   throw new Error('Not implemented');
 }
 
@@ -473,7 +473,24 @@ function shuffleChar() {
  * @returns {number} The nearest larger number, or original number if none exists.
  */
 function getNearestBigger(n) {
-  return n;
+  const num = String(n);
+  function getRandomArbitary(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+  function compareRandom() {
+    if (getRandomArbitary(0, 1)) return 1;
+    if (getRandomArbitary(0, 1)) return 0;
+    if (getRandomArbitary(0, 1)) return -1;
+    return 1;
+  }
+  const res = [];
+  for (let i = 0; i < 5000; i += 1) {
+    const newRes = Number(num.split('').sort(compareRandom).join(''));
+    if (newRes > n) {
+      res.push(newRes);
+    }
+  }
+  return res.sort((a, b) => a - b)[0] ?? n;
 }
 
 module.exports = {

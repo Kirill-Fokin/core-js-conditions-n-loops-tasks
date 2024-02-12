@@ -416,8 +416,8 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(array) {
-  return arr;
+function sortByAsc(/* array */) {
+  throw new Error('Not implemented');
 }
 
 /**
